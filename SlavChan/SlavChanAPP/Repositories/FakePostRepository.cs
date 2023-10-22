@@ -2,7 +2,7 @@
 
 namespace SlavChanAPP.Repositories
 {
-    public class FakePost : IPost
+    public class FakePostRepository : IPostRepository
     {
 
         private static readonly ICollection<Post> _posts = new List<Post>()

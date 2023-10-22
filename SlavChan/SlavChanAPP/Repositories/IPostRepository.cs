@@ -2,7 +2,7 @@
 
 namespace SlavChanAPP.Repositories
 {
-    public interface IPost
+    public interface IPostRepository
     {
         IEnumerable<Post> GetAll();
     }

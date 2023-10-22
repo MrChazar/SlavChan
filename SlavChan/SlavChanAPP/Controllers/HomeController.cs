@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SlavChanAPP.Models;
+using SlavChanAPP.Repositories;
 using System.Diagnostics;
 
 namespace SlavChanAPP.Controllers
@@ -7,10 +8,11 @@ namespace SlavChanAPP.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IPostRepository _postRepository;
+        public HomeController(ILogger<HomeController> logger, IPostRepository postRepository)
         {
             _logger = logger;
+            _postRepository = postRepository;
         }
 
         public IActionResult Index()
@@ -31,7 +33,8 @@ namespace SlavChanAPP.Controllers
 
         public IActionResult Feed() 
         {
-            return View();
+
+            return View(_postRepository.GetAll());
         }
     }
 }
