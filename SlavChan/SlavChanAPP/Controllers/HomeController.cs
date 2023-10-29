@@ -39,6 +39,7 @@ namespace SlavChanAPP.Controllers
 
         public IActionResult Discussion(int id) 
         {
+
             return View();
         }
     }
