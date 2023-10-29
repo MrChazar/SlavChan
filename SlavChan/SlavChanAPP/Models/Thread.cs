@@ -5,6 +5,7 @@ namespace SlavChanAPP.Models
     public class Thread
     {
         [Required]
+        [Key]
         public Guid ThreadID { get; set; }
         
         [Required]
@@ -23,10 +24,18 @@ namespace SlavChanAPP.Models
         [Required]
         public DateTime TimeSinceLastPost { get; set; }
 
-        [Required]
-        public byte[] Image { get; set; }
+        
+        public byte[]? Image { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
+
+        [Required]
+        public Board Board { get; set; }
+
+        public int BoardId {  get; set; }
+
+        public ICollection<Reply> Replies { get; set; }
+
     }
 }

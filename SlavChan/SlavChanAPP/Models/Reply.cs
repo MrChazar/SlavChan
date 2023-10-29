@@ -5,7 +5,8 @@ namespace SlavChanAPP.Models
     public class Reply
     {
         [Required]
-        public Guid Guid { get; set; }
+        [Key]
+        public Guid ReplyId { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
@@ -19,5 +20,9 @@ namespace SlavChanAPP.Models
 
 
         public byte[]? Image { get; set; }
+
+        public Guid ThreadId { get; set; }
+
+        public Thread Thread { get; set; }
     }
 }
