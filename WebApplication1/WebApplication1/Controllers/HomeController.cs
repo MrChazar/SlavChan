@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SlavChanAPP.Models;
-using SlavChanAPP.Repositories;
 using System.Diagnostics;
+using WebApplication1.Models;
 
-namespace SlavChanAPP.Controllers
+namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IPostRepository _postRepository;
-        public HomeController(ILogger<HomeController> logger, IPostRepository postRepository)
+
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _postRepository = postRepository;
         }
 
         public IActionResult Index()
@@ -29,17 +27,6 @@ namespace SlavChanAPP.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult Feed() 
-        {
-
-            return View(_postRepository.GetAll());
-        }
-
-        public IActionResult Discussion(int id) 
-        {
-            return View();
         }
     }
 }
