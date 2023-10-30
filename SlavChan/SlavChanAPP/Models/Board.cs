@@ -6,7 +6,7 @@ namespace SlavChanAPP.Models
     public class Board
     {
         [Required]
-        public int BoardId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(3)]

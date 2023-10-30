@@ -12,7 +12,7 @@ using SlavChanAPP.DataBaseContext;
 namespace SlavChanAPP.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231029193618_innit")]
+    [Migration("20231030101832_innit")]
     partial class innit
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace SlavChanAPP.Migrations
 
             modelBuilder.Entity("SlavChanAPP.Models.Board", b =>
                 {
-                    b.Property<int>("BoardId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BoardId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -42,20 +42,20 @@ namespace SlavChanAPP.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
-                    b.HasKey("BoardId");
+                    b.HasKey("Id");
 
                     b.ToTable("Boards");
 
                     b.HasData(
                         new
                         {
-                            BoardId = 1,
+                            Id = 1,
                             Name = "Ogólna",
                             Shortcut = "ABC"
                         },
                         new
                         {
-                            BoardId = 2,
+                            Id = 2,
                             Name = "Technologia",
                             Shortcut = "XYZ"
                         });
@@ -63,7 +63,7 @@ namespace SlavChanAPP.Migrations
 
             modelBuilder.Entity("SlavChanAPP.Models.Reply", b =>
                 {
-                    b.Property<Guid>("ReplyId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -75,6 +75,9 @@ namespace SlavChanAPP.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<DateTime>("ReplyDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("ReplyUserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -84,7 +87,7 @@ namespace SlavChanAPP.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ReplyId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ThreadId");
 
@@ -93,17 +96,27 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            ReplyId = new Guid("9195b5de-0812-47fa-83bc-c6bce6465a44"),
+                            Id = new Guid("7afc26f1-0896-40a3-b5e9-bc818c948b22"),
                             Content = "Treść odpowiedzi",
-                            ReplyUserId = new Guid("165333a2-c85d-42f1-9891-cc8734dd9a56"),
-                            ThreadId = new Guid("5ed7e3a6-0293-4ccf-b2e5-ec7a913c4d38"),
-                            UserId = new Guid("47737281-ffb4-4667-b58a-5f3631827f60")
+                            ReplyDate = new DateTime(2023, 10, 30, 11, 30, 31, 905, DateTimeKind.Local).AddTicks(8692),
+                            ReplyUserId = new Guid("6f0386e4-449c-48de-90e9-bafecdb73c7a"),
+                            ThreadId = new Guid("685f58f1-3c97-4190-a8d5-e1ca395a7a21"),
+                            UserId = new Guid("0c6856f6-aa7a-4267-a585-21cf66b633eb")
+                        },
+                        new
+                        {
+                            Id = new Guid("d96497ef-7e4d-4801-8ecc-0b9e381b3d81"),
+                            Content = "Jebać pis",
+                            ReplyDate = new DateTime(2023, 10, 30, 11, 41, 31, 905, DateTimeKind.Local).AddTicks(8698),
+                            ReplyUserId = new Guid("0c6856f6-aa7a-4267-a585-21cf66b633eb"),
+                            ThreadId = new Guid("685f58f1-3c97-4190-a8d5-e1ca395a7a21"),
+                            UserId = new Guid("faf63b16-76b7-49cf-8fdc-b7a660c47d49")
                         });
                 });
 
             modelBuilder.Entity("SlavChanAPP.Models.Thread", b =>
                 {
-                    b.Property<Guid>("ThreadID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -125,8 +138,8 @@ namespace SlavChanAPP.Migrations
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("TimeSinceLastPost")
-                        .HasColumnType("datetime2");
+                    b.Property<float>("TimeSinceLastPost")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -135,7 +148,7 @@ namespace SlavChanAPP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ThreadID");
+                    b.HasKey("Id");
 
                     b.HasIndex("BoardId");
 
@@ -144,24 +157,24 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            ThreadID = new Guid("abce1b55-659b-40aa-b106-c0e3b421d6ba"),
+                            Id = new Guid("e2906f0e-cecf-4c2f-9b12-9d3d1ad0765e"),
                             BoardId = 1,
                             Content = "Treść pierwszego wątku",
                             Name = "Pierwszy wątek",
-                            PostDate = new DateTime(2023, 10, 29, 20, 36, 18, 610, DateTimeKind.Local).AddTicks(8914),
-                            TimeSinceLastPost = new DateTime(2023, 10, 29, 20, 36, 18, 610, DateTimeKind.Local).AddTicks(8955),
-                            UserId = new Guid("226a45f6-4fdd-456d-b5dc-919ce58f5429"),
+                            PostDate = new DateTime(2023, 10, 30, 11, 18, 31, 905, DateTimeKind.Local).AddTicks(8601),
+                            TimeSinceLastPost = 11f,
+                            UserId = new Guid("6f0386e4-449c-48de-90e9-bafecdb73c7a"),
                             UserName = "User1"
                         },
                         new
                         {
-                            ThreadID = new Guid("4cd6f8f0-93f7-4238-8c85-1be47253f757"),
+                            Id = new Guid("685f58f1-3c97-4190-a8d5-e1ca395a7a21"),
                             BoardId = 2,
                             Content = "Treść drugiego wątku",
                             Name = "Drugi wątek",
-                            PostDate = new DateTime(2023, 10, 29, 20, 36, 18, 610, DateTimeKind.Local).AddTicks(8960),
-                            TimeSinceLastPost = new DateTime(2023, 10, 29, 20, 36, 18, 610, DateTimeKind.Local).AddTicks(8962),
-                            UserId = new Guid("c3451a6b-a591-415d-8687-49e46a7e70b9"),
+                            PostDate = new DateTime(2023, 10, 30, 11, 18, 31, 905, DateTimeKind.Local).AddTicks(8643),
+                            TimeSinceLastPost = 11f,
+                            UserId = new Guid("e06cc998-fbcc-4c41-bb84-ddd718efe235"),
                             UserName = "User2"
                         });
                 });

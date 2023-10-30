@@ -12,6 +12,14 @@ namespace SlavChanAPP.DataBaseContext
 
         }
 
+        public Guid ThredId1 = Guid.NewGuid();
+        public Guid ThredId2 = Guid.NewGuid();
+        public Guid ThredPostingUser1 = Guid.NewGuid();
+        public Guid ThredPostingUser2 = Guid.NewGuid();
+        public Guid ReplyPostingUser1 = Guid.NewGuid();
+        public Guid ReplyPostingUser2 = Guid.NewGuid();
+
+
         public DbSet<Board> Boards { get; set; }
 
         public DbSet<Reply> Replies { get; set; }
@@ -34,15 +42,15 @@ namespace SlavChanAPP.DataBaseContext
             modelBuilder.Entity<Board>().HasData(
                 new Board
                 {
-                    BoardId = 1,
+                    Id = 1,
                     Shortcut = "ABC",
-                    Name = "Ogólna",
+                    Name = "Ogólna"
                 },
                 new Board
                 {
-                    BoardId = 2,
+                    Id = 2,
                     Shortcut = "XYZ",
-                    Name = "Technologia",
+                    Name = "Technologia"
                 }
             );
 
@@ -50,25 +58,25 @@ namespace SlavChanAPP.DataBaseContext
             modelBuilder.Entity<Thread>().HasData(
                 new Thread
                 {
-                    ThreadID = Guid.NewGuid(),
+                    Id = ThredId1,
                     Name = "Pierwszy wątek",
                     UserName = "User1",
                     Content = "Treść pierwszego wątku",
                     PostDate = DateTime.Now,
-                    TimeSinceLastPost = DateTime.Now,
-                    UserId = Guid.NewGuid(), // Identyfikator użytkownika
-                    BoardId = 1,
+                    TimeSinceLastPost = DateTime.Now.Hour,
+                    UserId = ThredPostingUser1, // Identyfikator użytkownika
+                    BoardId = 1
                 },
                 new Thread
                 {
-                    ThreadID = Guid.NewGuid(),
+                    Id = ThredId2,
                     Name = "Drugi wątek",
                     UserName = "User2",
                     Content = "Treść drugiego wątku",
                     PostDate = DateTime.Now,
-                    TimeSinceLastPost = DateTime.Now,
-                    UserId = Guid.NewGuid(), // Identyfikator użytkownika
-                    BoardId = 2,
+                    TimeSinceLastPost = DateTime.Now.Hour,
+                    UserId = ThredPostingUser2, // Identyfikator użytkownika
+                    BoardId = 2
                 }
                 // Dodaj więcej rekordów Thread według potrzeb
             );
@@ -77,11 +85,22 @@ namespace SlavChanAPP.DataBaseContext
             modelBuilder.Entity<Reply>().HasData(
                 new Reply
                 {
-                    ReplyId = Guid.NewGuid(),
-                    UserId = Guid.NewGuid(), // Identyfikator użytkownika
-                    ReplyUserId = Guid.NewGuid(), // Identyfikator użytkownika
+                    Id = Guid.NewGuid(),
+                    UserId = ReplyPostingUser1, // Identyfikator użytkownika
+                    ReplyUserId = ThredPostingUser1, // Identyfikator użytkownika
                     Content = "Treść odpowiedzi",
-                    ThreadId = Guid.NewGuid(), // Identyfikator wątku
+                    ReplyDate = DateTime.Now.AddMinutes(12),
+                    ThreadId = ThredId2 
+                },
+                new Reply 
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = ReplyPostingUser2,
+                    ReplyUserId = ReplyPostingUser1,
+                    Content = "Jebać pis",
+                    ReplyDate = DateTime.Now.AddMinutes(23),
+                    ThreadId = ThredId2
+
                 }
                 // Dodaj więcej rekordów Reply według potrzeb
             );

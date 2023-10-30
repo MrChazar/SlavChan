@@ -6,7 +6,7 @@ namespace SlavChanAPP.Models
     {
         [Required]
         [Key]
-        public Guid ThreadID { get; set; }
+        public Guid Id { get; set; }
         
         [Required]
         public string Name { get; set; }
@@ -22,9 +22,8 @@ namespace SlavChanAPP.Models
         public DateTime PostDate { get; set; }
 
         [Required]
-        public DateTime TimeSinceLastPost { get; set; }
+        public float TimeSinceLastPost { get; set; }
 
-        
         public byte[]? Image { get; set; }
 
         [Required]
