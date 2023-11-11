@@ -22,7 +22,7 @@ namespace SlavChanAPP.Repositories
         public Board GetById(int id)
         {
             Board boards = _databasecontext.Boards.FirstOrDefault(v => v.Id == id);
-
+            return boards;
         }
     }
 }

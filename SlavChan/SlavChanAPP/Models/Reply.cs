@@ -22,10 +22,10 @@ namespace SlavChanAPP.Models
         public byte[]? Image { get; set; }
 
         [Required]
-        public Guid ThreadId { get; set; }
+        public Guid SubjectId { get; set; }
 
         [Required]
-        public Thread Thread { get; set; }
+        public Subject Subject { get; set; }
 
         [Required]
         public DateTime ReplyDate { get; set; }

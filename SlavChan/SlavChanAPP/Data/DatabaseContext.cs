@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SlavChanAPP.Models;
 using System.Diagnostics;
-using Thread = SlavChanAPP.Models.Thread;
+using Subject = SlavChanAPP.Models.Subject;
 
 namespace SlavChanAPP.DataBaseContext
 {
@@ -24,19 +24,19 @@ namespace SlavChanAPP.DataBaseContext
 
         public DbSet<Reply> Replies { get; set; }
 
-        public DbSet<Thread> Threads { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Thread>()
+            modelBuilder.Entity<Subject>()
             .HasOne<Board>(s => s.Board)
-            .WithMany(g => g.Threads)
+            .WithMany(g => g.Subjects)
             .HasForeignKey(s => s.BoardId);
 
             modelBuilder.Entity<Reply>()
-            .HasOne<Thread>(s => s.Thread)
+            .HasOne<Subject>(s => s.Subject)
             .WithMany(g => g.Replies)
-            .HasForeignKey(s => s.ThreadId);
+            .HasForeignKey(s => s.SubjectId);
 
 
             modelBuilder.Entity<Board>().HasData(
@@ -55,8 +55,8 @@ namespace SlavChanAPP.DataBaseContext
             );
 
             
-            modelBuilder.Entity<Thread>().HasData(
-                new Thread
+            modelBuilder.Entity<Subject>().HasData(
+                new Subject
                 {
                     Id = ThredId1,
                     Name = "Pierwszy wątek",
@@ -67,7 +67,7 @@ namespace SlavChanAPP.DataBaseContext
                     UserId = ThredPostingUser1, // Identyfikator użytkownika
                     BoardId = 1
                 },
-                new Thread
+                new Subject
                 {
                     Id = ThredId2,
                     Name = "Drugi wątek",
@@ -90,7 +90,7 @@ namespace SlavChanAPP.DataBaseContext
                     ReplyUserId = ThredPostingUser1, // Identyfikator użytkownika
                     Content = "Treść odpowiedzi",
                     ReplyDate = DateTime.Now.AddMinutes(12),
-                    ThreadId = ThredId2 
+                    SubjectId = ThredId2 
                 },
                 new Reply 
                 {
@@ -99,7 +99,7 @@ namespace SlavChanAPP.DataBaseContext
                     ReplyUserId = ReplyPostingUser1,
                     Content = "Jebać pis",
                     ReplyDate = DateTime.Now.AddMinutes(23),
-                    ThreadId = ThredId2
+                    SubjectId = ThredId2
 
                 }
                 // Dodaj więcej rekordów Reply według potrzeb

@@ -1,12 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using SlavChanAPP.DataBaseContext;
+using SlavChanAPP.Repositories;
+using Thread = SlavChanAPP.Models.Subject;
+
 //using SlavChanAPP.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// builder.Services.AddSingleton<IPostRepository, FakePostRepository>();
+builder.Services.AddScoped<IBoardRepository, BoardRepository>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 
 // Add Database
 builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SlavChanDBContext")));

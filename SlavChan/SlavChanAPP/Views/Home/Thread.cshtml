@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Subject>
+
+@{
+    foreach(var a in Model)
+    {
+        ViewData["Title"] = "/ " +a.Board.Shortcut + " /";
+    }
+}
+
+
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto text-center">
+            <li class="nav-item">
+                <a class="nav-link text-danger mx-2">[</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger mx-2" href="#"> @Html.ActionLink("ABC", "Thread", "Home", new {boardId = 1}) </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger mx-2" href="#"> @Html.ActionLink("XYZ", "Thread", "Home", new {boardId = 2}) </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger mx-2">]</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!--Wstęp-->
+<div class="text-center mb-4">
+    <h2>Nazwa Twojego Boarda</h2>
+    <a href="#" class="btn btn-primary">Stwórz nowy wątek</a>
+</div>
+
+
+<!--Wszystkie Thready-->
+<div id="all" class="text-center d-flex flex-wrap justify-content-around">
+    @foreach (var a in Model)
+    {
+        <div class="card m-3" style="width: 18rem;">
+            <img src="dupa" class="card-img-top" alt="Obrazek">
+            <div class="card-body">
+                <h5 class="card-title">@a.Name</h5>
+            </div>
+        </div>
+    }
+</div>

@@ -16,6 +16,6 @@ namespace SlavChanAPP.Models
         public string Name { get; set; }
 
         [Required]
-        public ICollection<Thread> Threads { get; set;}
+        public ICollection<Subject> Subjects { get; set;}
     }
 }

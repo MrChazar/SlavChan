@@ -1,16 +1,31 @@
 ﻿body 
 {
-    background-color: rgb(232, 234, 121);
+    background-color: white;
 }
-
-
 
 .break
 {
     clear:both;
 }
 
-header
+#header
 {
-    background-color:  rgb(125, 171, 189);
+
+}
+
+#post
+{
+    background-color: white;
+    margin: 10px;
+    border: 2px black;
+}
+
+#left_post
+{
+    background-color: lightgray;
+}
+
+#right_post
+{
+    background-color: gray;
 }

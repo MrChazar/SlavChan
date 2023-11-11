@@ -1,8 +1,54 @@
-﻿@{
+﻿@model IEnumerable<Board>
+
+@{
     ViewData["Title"] = "SlavCHAN";
 }
+    
+<body class="bg-light">
+    <div class="container text-center mt-5">
+        <img src="sciezka/do/zdjecia.jpg" alt="Zdjęcie" class="img-fluid">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
-<p>dupa</p>
+        <div class="mt-3"></div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Boards</h5>
+                        <div class="d-inline">
+                            @foreach (var a in Model)
+                            {
+                                <p class="card-text d-inline"> @Html.ActionLink(a.Name, "Thread", "Home", new {boardId = @a.Id}) </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3"></div>
+
+            <div class="col-12">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Threads</h5>
+                        <!-- Treść kontentu "threads" -->
+                        <p class="card-text">Zawartość threads...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3"></div>
+
+            <div class="col-12">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Statystyki</h5>
+                        <!-- Treść statystyk -->
+                        <p class="card-text">Zawartość statystyk...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

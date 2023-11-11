@@ -2,7 +2,7 @@
 
 namespace SlavChanAPP.Models
 {
-    public class Thread
+    public class Subject
     {
         [Required]
         [Key]
