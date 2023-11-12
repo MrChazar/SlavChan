@@ -19,7 +19,7 @@ namespace SlavChanAPP.Models
         public string Content { get; set; }
 
 
-        public byte[]? Image { get; set; }
+        public IFormFile Image { get; set; }
 
         [Required]
         public Guid SubjectId { get; set; }
