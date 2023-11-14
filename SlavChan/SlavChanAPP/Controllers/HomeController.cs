@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SlavChanAPP.Models;
 using SlavChanAPP.Repositories;
 using System.Diagnostics;
-using Thread = SlavChanAPP.Models.Subject;
 
 namespace SlavChanAPP.Controllers
 {
@@ -12,11 +10,13 @@ namespace SlavChanAPP.Controllers
         
         private readonly IBoardRepository _boardRepository;
         private readonly ISubjectRepository _subjectRepository;
+        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
 
-        public HomeController(IBoardRepository boardRepository, ISubjectRepository subjectRepository) 
+        public HomeController(IBoardRepository boardRepository, ISubjectRepository subjectRepository, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment ) 
         {
             _boardRepository = boardRepository;
             _subjectRepository = subjectRepository;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Index()
@@ -47,16 +47,49 @@ namespace SlavChanAPP.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateThread([Bind("Name,UserName,Content,Image,BoardId")] Subject thread) 
+        public IActionResult CreateThread(Subject thread, IFormFile Image)
         {
             thread.PostDate = DateTime.Now;
             thread.Replies = new List<Reply>();
             thread.TimeSinceLastPost = 0;
             thread.UserId = Guid.Parse(HttpContext.Session.GetString("UserId"));
+            thread.SubjectImage = Guid.NewGuid();
+            try 
+            {
+                if (Image != null && Image.Length > 0)
+                {
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                    string uniqueFileName = thread.SubjectImage.ToString() + "_" + Path.GetFileName(Image.FileName);
+
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    // Zapisz plik na dysku
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        Image.CopyTo(stream);
+                    }
+                }
+            }
+            catch (Exception ex)
+    {
+                // Zaloguj błąd lub zwróć odpowiedź z informacją o błędzie
+                return BadRequest($"Wystąpił błąd: {ex.Message}");
+            }
+
             _subjectRepository.Save(thread);
 
             IEnumerable<Subject> Threads = _subjectRepository.GetAll(thread.BoardId);
-            return View("Thread",Threads);
+            return View("Thread", Threads);
+        }
+
+
+        private byte[] GetBytesFromStream(Stream stream)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
 
     }

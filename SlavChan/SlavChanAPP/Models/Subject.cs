@@ -24,7 +24,7 @@ namespace SlavChanAPP.Models
         [Required]
         public float TimeSinceLastPost { get; set; }
 
-        public IFormFile Image { get; set; }
+        public Guid? SubjectImage { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
