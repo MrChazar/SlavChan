@@ -8,10 +8,11 @@ using Thread = SlavChanAPP.Models.Subject;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container for Dependency Inversion
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<IPictureRepository, PictureRepository>();
 builder.Services.AddSession();
 
 // Setting up file size limits for our form

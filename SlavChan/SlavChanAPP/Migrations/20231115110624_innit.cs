@@ -28,7 +28,7 @@ namespace SlavChanAPP.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Threads",
+                name: "Subjects",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -37,15 +37,15 @@ namespace SlavChanAPP.Migrations
                     Content = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     PostDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeSinceLastPost = table.Column<float>(type: "real", nullable: false),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    SubjectImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BoardId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Threads", x => x.Id);
+                    table.PrimaryKey("PK_Subjects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Threads_Boards_BoardId",
+                        name: "FK_Subjects_Boards_BoardId",
                         column: x => x.BoardId,
                         principalTable: "Boards",
                         principalColumn: "Id",
@@ -60,17 +60,16 @@ namespace SlavChanAPP.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ReplyUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    ThreadId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SubjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ReplyDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Replies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Replies_Threads_ThreadId",
-                        column: x => x.ThreadId,
-                        principalTable: "Threads",
+                        name: "FK_Replies_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -85,31 +84,31 @@ namespace SlavChanAPP.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Threads",
-                columns: new[] { "Id", "BoardId", "Content", "Image", "Name", "PostDate", "TimeSinceLastPost", "UserId", "UserName" },
+                table: "Subjects",
+                columns: new[] { "Id", "BoardId", "Content", "Name", "PostDate", "SubjectImage", "TimeSinceLastPost", "UserId", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("685f58f1-3c97-4190-a8d5-e1ca395a7a21"), 2, "Treść drugiego wątku", null, "Drugi wątek", new DateTime(2023, 10, 30, 11, 18, 31, 905, DateTimeKind.Local).AddTicks(8643), 11f, new Guid("e06cc998-fbcc-4c41-bb84-ddd718efe235"), "User2" },
-                    { new Guid("e2906f0e-cecf-4c2f-9b12-9d3d1ad0765e"), 1, "Treść pierwszego wątku", null, "Pierwszy wątek", new DateTime(2023, 10, 30, 11, 18, 31, 905, DateTimeKind.Local).AddTicks(8601), 11f, new Guid("6f0386e4-449c-48de-90e9-bafecdb73c7a"), "User1" }
+                    { new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"), 2, "Treść drugiego wątku", "Drugi wątek", new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3469), null, 12f, new Guid("61b427b5-9369-4c14-b1c9-730cb5d51ded"), "User2" },
+                    { new Guid("ec076636-6a0d-4ba6-9d6d-fc5f08e01365"), 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3431), null, 12f, new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"), "User1" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Replies",
-                columns: new[] { "Id", "Content", "Image", "ReplyDate", "ReplyUserId", "ThreadId", "UserId" },
+                columns: new[] { "Id", "Content", "ReplyDate", "ReplyUserId", "SubjectId", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("7afc26f1-0896-40a3-b5e9-bc818c948b22"), "Treść odpowiedzi", null, new DateTime(2023, 10, 30, 11, 30, 31, 905, DateTimeKind.Local).AddTicks(8692), new Guid("6f0386e4-449c-48de-90e9-bafecdb73c7a"), new Guid("685f58f1-3c97-4190-a8d5-e1ca395a7a21"), new Guid("0c6856f6-aa7a-4267-a585-21cf66b633eb") },
-                    { new Guid("d96497ef-7e4d-4801-8ecc-0b9e381b3d81"), "Jebać pis", null, new DateTime(2023, 10, 30, 11, 41, 31, 905, DateTimeKind.Local).AddTicks(8698), new Guid("0c6856f6-aa7a-4267-a585-21cf66b633eb"), new Guid("685f58f1-3c97-4190-a8d5-e1ca395a7a21"), new Guid("faf63b16-76b7-49cf-8fdc-b7a660c47d49") }
+                    { new Guid("10f6a8a3-e8e2-4c0f-baf4-06e65acba60b"), "Jebać pis", new DateTime(2023, 11, 15, 12, 29, 24, 699, DateTimeKind.Local).AddTicks(3522), new Guid("5468d124-cc12-494a-9a29-b51b9d09be09"), new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"), new Guid("84384969-4450-46d8-ac9d-2d76a1975ea4") },
+                    { new Guid("76b656b5-6917-4a84-9d7b-e1289e316e55"), "Treść odpowiedzi", new DateTime(2023, 11, 15, 12, 18, 24, 699, DateTimeKind.Local).AddTicks(3517), new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"), new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"), new Guid("5468d124-cc12-494a-9a29-b51b9d09be09") }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Replies_ThreadId",
+                name: "IX_Replies_SubjectId",
                 table: "Replies",
-                column: "ThreadId");
+                column: "SubjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Threads_BoardId",
-                table: "Threads",
+                name: "IX_Subjects_BoardId",
+                table: "Subjects",
                 column: "BoardId");
         }
 
@@ -120,7 +119,7 @@ namespace SlavChanAPP.Migrations
                 name: "Replies");
 
             migrationBuilder.DropTable(
-                name: "Threads");
+                name: "Subjects");
 
             migrationBuilder.DropTable(
                 name: "Boards");

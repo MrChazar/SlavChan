@@ -90,21 +90,21 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4ff4a082-b7d5-4c08-a754-462417e886eb"),
+                            Id = new Guid("76b656b5-6917-4a84-9d7b-e1289e316e55"),
                             Content = "Treść odpowiedzi",
-                            ReplyDate = new DateTime(2023, 11, 13, 18, 3, 55, 493, DateTimeKind.Local).AddTicks(537),
-                            ReplyUserId = new Guid("058a1b2e-133a-4e1d-a6f8-3d43e94f44b9"),
-                            SubjectId = new Guid("425f0e55-be2d-4fe8-96cb-719f56baa137"),
-                            UserId = new Guid("d7116f02-6e22-416f-a4b7-d6c22f6f49f6")
+                            ReplyDate = new DateTime(2023, 11, 15, 12, 18, 24, 699, DateTimeKind.Local).AddTicks(3517),
+                            ReplyUserId = new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"),
+                            SubjectId = new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"),
+                            UserId = new Guid("5468d124-cc12-494a-9a29-b51b9d09be09")
                         },
                         new
                         {
-                            Id = new Guid("e51883b1-a820-4873-aa9a-48b63dd44428"),
+                            Id = new Guid("10f6a8a3-e8e2-4c0f-baf4-06e65acba60b"),
                             Content = "Jebać pis",
-                            ReplyDate = new DateTime(2023, 11, 13, 18, 14, 55, 493, DateTimeKind.Local).AddTicks(542),
-                            ReplyUserId = new Guid("d7116f02-6e22-416f-a4b7-d6c22f6f49f6"),
-                            SubjectId = new Guid("425f0e55-be2d-4fe8-96cb-719f56baa137"),
-                            UserId = new Guid("c023de5e-a726-464d-b4f6-8188db243a5b")
+                            ReplyDate = new DateTime(2023, 11, 15, 12, 29, 24, 699, DateTimeKind.Local).AddTicks(3522),
+                            ReplyUserId = new Guid("5468d124-cc12-494a-9a29-b51b9d09be09"),
+                            SubjectId = new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"),
+                            UserId = new Guid("84384969-4450-46d8-ac9d-2d76a1975ea4")
                         });
                 });
 
@@ -129,8 +129,8 @@ namespace SlavChanAPP.Migrations
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("SubjectImage")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SubjectImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("TimeSinceLastPost")
                         .HasColumnType("real");
@@ -151,24 +151,24 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a4184425-6adf-41b1-9803-5d4bd80dc298"),
+                            Id = new Guid("ec076636-6a0d-4ba6-9d6d-fc5f08e01365"),
                             BoardId = 1,
                             Content = "Treść pierwszego wątku",
                             Name = "Pierwszy wątek",
-                            PostDate = new DateTime(2023, 11, 13, 17, 51, 55, 493, DateTimeKind.Local).AddTicks(438),
-                            TimeSinceLastPost = 17f,
-                            UserId = new Guid("058a1b2e-133a-4e1d-a6f8-3d43e94f44b9"),
+                            PostDate = new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3431),
+                            TimeSinceLastPost = 12f,
+                            UserId = new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"),
                             UserName = "User1"
                         },
                         new
                         {
-                            Id = new Guid("425f0e55-be2d-4fe8-96cb-719f56baa137"),
+                            Id = new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"),
                             BoardId = 2,
                             Content = "Treść drugiego wątku",
                             Name = "Drugi wątek",
-                            PostDate = new DateTime(2023, 11, 13, 17, 51, 55, 493, DateTimeKind.Local).AddTicks(483),
-                            TimeSinceLastPost = 17f,
-                            UserId = new Guid("0508138c-c50a-46ac-91d7-0d4f417cf1f7"),
+                            PostDate = new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3469),
+                            TimeSinceLastPost = 12f,
+                            UserId = new Guid("61b427b5-9369-4c14-b1c9-730cb5d51ded"),
                             UserName = "User2"
                         });
                 });

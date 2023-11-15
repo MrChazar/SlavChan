@@ -29,3 +29,8 @@
 {
     background-color: gray;
 }
+
+#form_add
+{
+    display: none;
+}

@@ -10,13 +10,13 @@ namespace SlavChanAPP.Controllers
         
         private readonly IBoardRepository _boardRepository;
         private readonly ISubjectRepository _subjectRepository;
-        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
+        private readonly IPictureRepository _pictureRepository;
 
-        public HomeController(IBoardRepository boardRepository, ISubjectRepository subjectRepository, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment ) 
+        public HomeController(IBoardRepository boardRepository, ISubjectRepository subjectRepository, IPictureRepository pictureRepository) 
         {
             _boardRepository = boardRepository;
             _subjectRepository = subjectRepository;
-            _hostingEnvironment = hostingEnvironment;
+            _pictureRepository = pictureRepository;
         }
 
         public IActionResult Index()
@@ -53,44 +53,25 @@ namespace SlavChanAPP.Controllers
             thread.Replies = new List<Reply>();
             thread.TimeSinceLastPost = 0;
             thread.UserId = Guid.Parse(HttpContext.Session.GetString("UserId"));
-            thread.SubjectImage = Guid.NewGuid();
-            try 
+            if( Image != null ) 
             {
-                if (Image != null && Image.Length > 0)
-                {
-                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
-                    string uniqueFileName = thread.SubjectImage.ToString() + "_" + Path.GetFileName(Image.FileName);
-
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    // Zapisz plik na dysku
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        Image.CopyTo(stream);
-                    }
-                }
+                string temp = Guid.NewGuid().ToString();
+                _pictureRepository.Save(Image, SubjectImage: ref temp);
+                thread.SubjectImage = temp;
             }
-            catch (Exception ex)
-    {
-                // Zaloguj błąd lub zwróć odpowiedź z informacją o błędzie
-                return BadRequest($"Wystąpił błąd: {ex.Message}");
+            else 
+            {
+                thread.SubjectImage = null;
             }
+            
 
+            
             _subjectRepository.Save(thread);
 
             IEnumerable<Subject> Threads = _subjectRepository.GetAll(thread.BoardId);
             return View("Thread", Threads);
         }
 
-
-        private byte[] GetBytesFromStream(Stream stream)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                stream.CopyTo(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
 
     }
 }
