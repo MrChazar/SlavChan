@@ -13,6 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 builder.Services.AddScoped<IPictureRepository, PictureRepository>();
+builder.Services.AddScoped<IReplyRepository, ReplyRepository>();
 builder.Services.AddSession();
 
 // Setting up file size limits for our form

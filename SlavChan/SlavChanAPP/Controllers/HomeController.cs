@@ -11,12 +11,14 @@ namespace SlavChanAPP.Controllers
         private readonly IBoardRepository _boardRepository;
         private readonly ISubjectRepository _subjectRepository;
         private readonly IPictureRepository _pictureRepository;
+        private readonly IReplyRepository _replyRepository;
 
-        public HomeController(IBoardRepository boardRepository, ISubjectRepository subjectRepository, IPictureRepository pictureRepository) 
+        public HomeController(IBoardRepository boardRepository, ISubjectRepository subjectRepository, IPictureRepository pictureRepository, IReplyRepository replyRepository)
         {
             _boardRepository = boardRepository;
             _subjectRepository = subjectRepository;
             _pictureRepository = pictureRepository;
+            _replyRepository = replyRepository;
         }
 
         public IActionResult Index()
@@ -65,13 +67,29 @@ namespace SlavChanAPP.Controllers
             }
             
 
-            
             _subjectRepository.Save(thread);
 
             IEnumerable<Subject> Threads = _subjectRepository.GetAll(thread.BoardId);
             return View("Thread", Threads);
         }
 
+        public IActionResult Post(Guid SubjectId) 
+        {
+            return View(_replyRepository.GetAll(SubjectId));
+        }
+
+        [HttpPost]
+        public IActionResult CreateReply(string Content, IFormFile Image, Guid ReplyUserId, Guid SubjectId ) 
+        {
+            Reply reply = new Reply();
+            reply.Content = Content;
+            reply.ReplyDate = DateTime.Now;
+            reply.UserId = Guid.Parse(HttpContext.Session.GetString("UserId"));
+            reply.ReplyUserId = ReplyUserId;
+            reply.SubjectId = SubjectId;
+            reply.Id = Guid.NewGuid();
+            return View("Post",SubjectId);
+        }
 
     }
 }

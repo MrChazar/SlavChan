@@ -72,7 +72,7 @@ namespace SlavChanAPP.DataBaseContext
                     Id = ThredId2,
                     Name = "Drugi wątek",
                     UserName = "User2",
-                    Content = "Treść drugiego wątku",
+                    Content = "Dokąd nocą tupta jeż ??",
                     PostDate = DateTime.Now,
                     TimeSinceLastPost = DateTime.Now.Hour,
                     UserId = ThredPostingUser2, // Identyfikator użytkownika
@@ -88,7 +88,7 @@ namespace SlavChanAPP.DataBaseContext
                     Id = Guid.NewGuid(),
                     UserId = ReplyPostingUser1, // Identyfikator użytkownika
                     ReplyUserId = ThredPostingUser1, // Identyfikator użytkownika
-                    Content = "Treść odpowiedzi",
+                    Content = "Hmmm naprawdę ciekawy temat",
                     ReplyDate = DateTime.Now.AddMinutes(12),
                     SubjectId = ThredId2 
                 },
@@ -97,7 +97,7 @@ namespace SlavChanAPP.DataBaseContext
                     Id = Guid.NewGuid(),
                     UserId = ReplyPostingUser2,
                     ReplyUserId = ReplyPostingUser1,
-                    Content = "Jebać pis",
+                    Content = "Rzeczywiście daje wiele do myślenia",
                     ReplyDate = DateTime.Now.AddMinutes(23),
                     SubjectId = ThredId2
 

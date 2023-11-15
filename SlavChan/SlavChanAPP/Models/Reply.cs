@@ -18,9 +18,6 @@ namespace SlavChanAPP.Models
         [StringLength(400)]
         public string Content { get; set; }
 
-
-       
-
         [Required]
         public Guid SubjectId { get; set; }
 
@@ -29,6 +26,8 @@ namespace SlavChanAPP.Models
 
         [Required]
         public DateTime ReplyDate { get; set; }
+
+        public string? ReplyImage { get; set; }
 
     }
 }

@@ -31,7 +31,7 @@
 </nav>
 
 
-<!--Wstęp-->
+<!--Stwórz nowy wątek-->
 <div class="text-center mb-4">
     @{
         <h2> @firstBoard.Board.Name </h2>
@@ -76,19 +76,25 @@
     @foreach (var a in Model)
     {
         <div class="card m-3" style="width: 18rem;">
+
             @if(a.SubjectImage != null )
             {
                 <img src="~/images/@a.SubjectImage" alt="picture" />
             }
+
             <div class="card-body">
-                <h5 class="card-title">@a.Name</h5>
+                <h5 class="card-title"> @Html.ActionLink(@a.Name, "Post", "Home", new {SubjectId = a.Id}) </h5>
             </div>
+
         </div>
     }
 </div>
 
 
 
+
+
+<!--Skrypt-->
 @section scripts{
     <script>
         document.getElementById('showFormBtn').addEventListener('click', function () {
