@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<Subject>
 @using SlavChanAPP.Models;
 @{
-    
+
     var  firstBoard = Model.First();
-    ViewData["Title"] = "/ " + firstBoard.Board.Shortcut + " /";
-    
+    ViewData["Title"] = $"/ {firstBoard.Board.Shortcut} {firstBoard.Board.Name} /";
 }
-
-
 
 
 <!--Navbar-->

@@ -12,7 +12,7 @@ using SlavChanAPP.DataBaseContext;
 namespace SlavChanAPP.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231118200922_innit")]
+    [Migration("20231118211927_innit")]
     partial class innit
     {
         /// <inheritdoc />
@@ -100,19 +100,28 @@ namespace SlavChanAPP.Migrations
                         {
                             Id = 1,
                             Content = "Hmmm naprawdę ciekawy temat",
-                            ReplyDate = new DateTime(2023, 11, 18, 21, 21, 20, 435, DateTimeKind.Local).AddTicks(7009),
-                            ReplyUserId = new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"),
+                            ReplyDate = new DateTime(2023, 11, 18, 22, 31, 27, 476, DateTimeKind.Local).AddTicks(5935),
+                            ReplyUserId = new Guid("3f6901b2-cbc2-40c7-ba5a-e328a11b4e1a"),
                             SubjectId = 2,
-                            UserId = new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35")
+                            UserId = new Guid("c81510bb-4bd9-4157-8b28-dedc2eeb8440")
                         },
                         new
                         {
                             Id = 2,
                             Content = "Rzeczywiście daje wiele do myślenia",
-                            ReplyDate = new DateTime(2023, 11, 18, 21, 32, 20, 435, DateTimeKind.Local).AddTicks(7026),
-                            ReplyUserId = new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35"),
+                            ReplyDate = new DateTime(2023, 11, 18, 22, 42, 27, 476, DateTimeKind.Local).AddTicks(5940),
+                            ReplyUserId = new Guid("c81510bb-4bd9-4157-8b28-dedc2eeb8440"),
                             SubjectId = 2,
-                            UserId = new Guid("81f7ac37-837d-4815-b63d-bd6381cdf25d")
+                            UserId = new Guid("0624ced6-4927-449f-863f-8c6e526b7a2e")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "Rzeczywiście daje wiele do myślenia",
+                            ReplyDate = new DateTime(2023, 11, 20, 9, 56, 27, 476, DateTimeKind.Local).AddTicks(5943),
+                            ReplyUserId = new Guid("c81510bb-4bd9-4157-8b28-dedc2eeb8440"),
+                            SubjectId = 1,
+                            UserId = new Guid("0624ced6-4927-449f-863f-8c6e526b7a2e")
                         });
                 });
 
@@ -165,9 +174,9 @@ namespace SlavChanAPP.Migrations
                             BoardId = 1,
                             Content = "Treść pierwszego wątku",
                             Name = "Pierwszy wątek",
-                            PostDate = new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6479),
-                            TimeSinceLastPost = 21f,
-                            UserId = new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"),
+                            PostDate = new DateTime(2023, 11, 18, 22, 19, 27, 476, DateTimeKind.Local).AddTicks(5873),
+                            TimeSinceLastPost = 22f,
+                            UserId = new Guid("3f6901b2-cbc2-40c7-ba5a-e328a11b4e1a"),
                             UserName = "User1"
                         },
                         new
@@ -176,9 +185,9 @@ namespace SlavChanAPP.Migrations
                             BoardId = 2,
                             Content = "Dokąd nocą tupta jeż ??",
                             Name = "Drugi wątek",
-                            PostDate = new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6854),
-                            TimeSinceLastPost = 21f,
-                            UserId = new Guid("296cae05-ae95-40f6-90a1-beb3e549f7b0"),
+                            PostDate = new DateTime(2023, 11, 18, 22, 19, 27, 476, DateTimeKind.Local).AddTicks(5917),
+                            TimeSinceLastPost = 22f,
+                            UserId = new Guid("25338d9d-33bf-4aa1-a6ee-4bab4872efe5"),
                             UserName = "User2"
                         });
                 });

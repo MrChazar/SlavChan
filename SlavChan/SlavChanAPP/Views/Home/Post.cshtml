@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<Reply>
 
+@{
+    ViewData["Title"] = $"Post";
+}
 
 
 <!--Navbar-->
@@ -30,14 +33,13 @@
         {
             <div class="list-group-item m-4">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">@reply.Content</h5>
+                    <small class="mb-1">User: @reply.UserId</small>
                     <small>@reply.ReplyDate.ToString("yyyy-MM-dd HH:mm:ss")</small>
                 </div>
-                <p class="mb-1">User: @reply.UserId</p>
 
                 @if (reply.ReplyUserId != null)
                 {
-                    <p class="mb-1">Reply User: @reply.UserId</p>
+                    <small class="mb-1">Reply User: @reply.UserId</small>
                 }
 
                 <p class="mb-1">Content:</p>

@@ -91,8 +91,8 @@ namespace SlavChanAPP.Migrations
                 columns: new[] { "Id", "BoardId", "Content", "Name", "PostDate", "SubjectImage", "TimeSinceLastPost", "UserId", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6479), null, 21f, new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"), "User1" },
-                    { 2, 2, "Dokąd nocą tupta jeż ??", "Drugi wątek", new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6854), null, 21f, new Guid("296cae05-ae95-40f6-90a1-beb3e549f7b0"), "User2" }
+                    { 1, 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 18, 22, 19, 27, 476, DateTimeKind.Local).AddTicks(5873), null, 22f, new Guid("3f6901b2-cbc2-40c7-ba5a-e328a11b4e1a"), "User1" },
+                    { 2, 2, "Dokąd nocą tupta jeż ??", "Drugi wątek", new DateTime(2023, 11, 18, 22, 19, 27, 476, DateTimeKind.Local).AddTicks(5917), null, 22f, new Guid("25338d9d-33bf-4aa1-a6ee-4bab4872efe5"), "User2" }
                 });
 
             migrationBuilder.InsertData(
@@ -100,8 +100,9 @@ namespace SlavChanAPP.Migrations
                 columns: new[] { "Id", "Content", "ReplyDate", "ReplyImage", "ReplyUserId", "SubjectId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Hmmm naprawdę ciekawy temat", new DateTime(2023, 11, 18, 21, 21, 20, 435, DateTimeKind.Local).AddTicks(7009), null, new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"), 2, new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35") },
-                    { 2, "Rzeczywiście daje wiele do myślenia", new DateTime(2023, 11, 18, 21, 32, 20, 435, DateTimeKind.Local).AddTicks(7026), null, new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35"), 2, new Guid("81f7ac37-837d-4815-b63d-bd6381cdf25d") }
+                    { 1, "Hmmm naprawdę ciekawy temat", new DateTime(2023, 11, 18, 22, 31, 27, 476, DateTimeKind.Local).AddTicks(5935), null, new Guid("3f6901b2-cbc2-40c7-ba5a-e328a11b4e1a"), 2, new Guid("c81510bb-4bd9-4157-8b28-dedc2eeb8440") },
+                    { 2, "Rzeczywiście daje wiele do myślenia", new DateTime(2023, 11, 18, 22, 42, 27, 476, DateTimeKind.Local).AddTicks(5940), null, new Guid("c81510bb-4bd9-4157-8b28-dedc2eeb8440"), 2, new Guid("0624ced6-4927-449f-863f-8c6e526b7a2e") },
+                    { 3, "Rzeczywiście daje wiele do myślenia", new DateTime(2023, 11, 20, 9, 56, 27, 476, DateTimeKind.Local).AddTicks(5943), null, new Guid("c81510bb-4bd9-4157-8b28-dedc2eeb8440"), 1, new Guid("0624ced6-4927-449f-863f-8c6e526b7a2e") }
                 });
 
             migrationBuilder.CreateIndex(

@@ -1,4 +1,8 @@
+To add:
+- slav theme (obvious)
+- new boards
+
+
 Known bugs:
 - when you copy link to another site and try to create new post session id is null because is set in index
-- remake models to have less guid and more id's
 - remade how to images are shown

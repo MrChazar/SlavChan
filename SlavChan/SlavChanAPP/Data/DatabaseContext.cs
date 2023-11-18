@@ -101,6 +101,15 @@ namespace SlavChanAPP.DataBaseContext
                     ReplyDate = DateTime.Now.AddMinutes(23),
                     SubjectId = ThredId2
 
+                },
+                new Reply 
+                {
+                    Id = 3,
+                    UserId = ReplyPostingUser2,
+                    ReplyUserId = ReplyPostingUser1,
+                    Content = "Rzeczywiście daje wiele do myślenia",
+                    ReplyDate = DateTime.Now.AddMinutes(2137),
+                    SubjectId = ThredId1
                 }
                 // Dodaj więcej rekordów Reply według potrzeb
             );
