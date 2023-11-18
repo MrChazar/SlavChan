@@ -88,7 +88,8 @@ namespace SlavChanAPP.Controllers
             reply.ReplyUserId = ReplyUserId;
             reply.SubjectId = SubjectId;
             reply.Id = Guid.NewGuid();
-            return View("Post",SubjectId);
+            _replyRepository.Save(reply);
+            return RedirectToAction("Post", new { SubjectId = SubjectId });
         }
 
     }

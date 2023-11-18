@@ -12,7 +12,7 @@ using SlavChanAPP.DataBaseContext;
 namespace SlavChanAPP.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231115110624_innit")]
+    [Migration("20231118150455_innit")]
     partial class innit
     {
         /// <inheritdoc />
@@ -75,7 +75,10 @@ namespace SlavChanAPP.Migrations
                     b.Property<DateTime>("ReplyDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ReplyUserId")
+                    b.Property<string>("ReplyImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ReplyUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SubjectId")
@@ -93,21 +96,21 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("76b656b5-6917-4a84-9d7b-e1289e316e55"),
-                            Content = "Treść odpowiedzi",
-                            ReplyDate = new DateTime(2023, 11, 15, 12, 18, 24, 699, DateTimeKind.Local).AddTicks(3517),
-                            ReplyUserId = new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"),
-                            SubjectId = new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"),
-                            UserId = new Guid("5468d124-cc12-494a-9a29-b51b9d09be09")
+                            Id = new Guid("941c8ba3-ba57-4085-bdf7-2b2e21a223ec"),
+                            Content = "Hmmm naprawdę ciekawy temat",
+                            ReplyDate = new DateTime(2023, 11, 18, 16, 16, 55, 301, DateTimeKind.Local).AddTicks(983),
+                            ReplyUserId = new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"),
+                            SubjectId = new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"),
+                            UserId = new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957")
                         },
                         new
                         {
-                            Id = new Guid("10f6a8a3-e8e2-4c0f-baf4-06e65acba60b"),
-                            Content = "Jebać pis",
-                            ReplyDate = new DateTime(2023, 11, 15, 12, 29, 24, 699, DateTimeKind.Local).AddTicks(3522),
-                            ReplyUserId = new Guid("5468d124-cc12-494a-9a29-b51b9d09be09"),
-                            SubjectId = new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"),
-                            UserId = new Guid("84384969-4450-46d8-ac9d-2d76a1975ea4")
+                            Id = new Guid("9fbaa25c-5b30-4310-b801-7328658f8b1f"),
+                            Content = "Rzeczywiście daje wiele do myślenia",
+                            ReplyDate = new DateTime(2023, 11, 18, 16, 27, 55, 301, DateTimeKind.Local).AddTicks(988),
+                            ReplyUserId = new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957"),
+                            SubjectId = new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"),
+                            UserId = new Guid("b3d37353-b295-45ac-b39c-1c5dddc31d3d")
                         });
                 });
 
@@ -154,24 +157,24 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ec076636-6a0d-4ba6-9d6d-fc5f08e01365"),
+                            Id = new Guid("d9ffdfa1-041c-48b0-8d11-2e12c9eb8efe"),
                             BoardId = 1,
                             Content = "Treść pierwszego wątku",
                             Name = "Pierwszy wątek",
-                            PostDate = new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3431),
-                            TimeSinceLastPost = 12f,
-                            UserId = new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"),
+                            PostDate = new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(876),
+                            TimeSinceLastPost = 16f,
+                            UserId = new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"),
                             UserName = "User1"
                         },
                         new
                         {
-                            Id = new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"),
+                            Id = new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"),
                             BoardId = 2,
-                            Content = "Treść drugiego wątku",
+                            Content = "Dokąd nocą tupta jeż ??",
                             Name = "Drugi wątek",
-                            PostDate = new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3469),
-                            TimeSinceLastPost = 12f,
-                            UserId = new Guid("61b427b5-9369-4c14-b1c9-730cb5d51ded"),
+                            PostDate = new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(929),
+                            TimeSinceLastPost = 16f,
+                            UserId = new Guid("9d979d71-e984-4206-8c38-bec205da3765"),
                             UserName = "User2"
                         });
                 });

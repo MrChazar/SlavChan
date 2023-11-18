@@ -58,10 +58,11 @@ namespace SlavChanAPP.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ReplyUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReplyUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     SubjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ReplyDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ReplyDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReplyImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,17 +89,17 @@ namespace SlavChanAPP.Migrations
                 columns: new[] { "Id", "BoardId", "Content", "Name", "PostDate", "SubjectImage", "TimeSinceLastPost", "UserId", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"), 2, "Treść drugiego wątku", "Drugi wątek", new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3469), null, 12f, new Guid("61b427b5-9369-4c14-b1c9-730cb5d51ded"), "User2" },
-                    { new Guid("ec076636-6a0d-4ba6-9d6d-fc5f08e01365"), 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 15, 12, 6, 24, 699, DateTimeKind.Local).AddTicks(3431), null, 12f, new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"), "User1" }
+                    { new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"), 2, "Dokąd nocą tupta jeż ??", "Drugi wątek", new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(929), null, 16f, new Guid("9d979d71-e984-4206-8c38-bec205da3765"), "User2" },
+                    { new Guid("d9ffdfa1-041c-48b0-8d11-2e12c9eb8efe"), 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(876), null, 16f, new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"), "User1" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Replies",
-                columns: new[] { "Id", "Content", "ReplyDate", "ReplyUserId", "SubjectId", "UserId" },
+                columns: new[] { "Id", "Content", "ReplyDate", "ReplyImage", "ReplyUserId", "SubjectId", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("10f6a8a3-e8e2-4c0f-baf4-06e65acba60b"), "Jebać pis", new DateTime(2023, 11, 15, 12, 29, 24, 699, DateTimeKind.Local).AddTicks(3522), new Guid("5468d124-cc12-494a-9a29-b51b9d09be09"), new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"), new Guid("84384969-4450-46d8-ac9d-2d76a1975ea4") },
-                    { new Guid("76b656b5-6917-4a84-9d7b-e1289e316e55"), "Treść odpowiedzi", new DateTime(2023, 11, 15, 12, 18, 24, 699, DateTimeKind.Local).AddTicks(3517), new Guid("29fb6c5d-3b2a-4205-b5bd-18c3ff2d73f6"), new Guid("278ef9e2-396d-4a86-b29a-4f2d7e18df19"), new Guid("5468d124-cc12-494a-9a29-b51b9d09be09") }
+                    { new Guid("941c8ba3-ba57-4085-bdf7-2b2e21a223ec"), "Hmmm naprawdę ciekawy temat", new DateTime(2023, 11, 18, 16, 16, 55, 301, DateTimeKind.Local).AddTicks(983), null, new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"), new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"), new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957") },
+                    { new Guid("9fbaa25c-5b30-4310-b801-7328658f8b1f"), "Rzeczywiście daje wiele do myślenia", new DateTime(2023, 11, 18, 16, 27, 55, 301, DateTimeKind.Local).AddTicks(988), null, new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957"), new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"), new Guid("b3d37353-b295-45ac-b39c-1c5dddc31d3d") }
                 });
 
             migrationBuilder.CreateIndex(

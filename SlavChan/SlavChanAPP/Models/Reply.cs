@@ -11,8 +11,7 @@ namespace SlavChanAPP.Models
         [Required]
         public Guid UserId { get; set; }
 
-        [Required]
-        public Guid ReplyUserId { get; set; }
+        public Guid? ReplyUserId { get; set; }
 
         [Required]
         [StringLength(400)]

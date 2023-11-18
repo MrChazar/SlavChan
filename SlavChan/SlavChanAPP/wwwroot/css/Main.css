@@ -30,7 +30,18 @@
     background-color: gray;
 }
 
-#form_add
+.form_add
 {
     display: none;
+}
+
+#form_add 
+{
+    display: none;
+}
+
+.custom-link {
+    text-decoration: none; /* Usunięcie podkreślenia */
+    color: inherit; /* Dziedziczenie koloru tekstu */
+    cursor: pointer; /* Zmiana kursora na strzałkę, aby sugerować interaktywność */
 }

@@ -1,4 +1,5 @@
-﻿using SlavChanAPP.DataBaseContext;
+﻿using Microsoft.EntityFrameworkCore;
+using SlavChanAPP.DataBaseContext;
 using SlavChanAPP.Models;
 
 namespace SlavChanAPP.Repositories
@@ -14,12 +15,15 @@ namespace SlavChanAPP.Repositories
 
         public IEnumerable<Reply> GetAll(Guid SubjectId)
         {
-            return _context.Replies.Where(x => x.SubjectId == SubjectId).OrderBy(x => x.ReplyDate).ToList();
+            return _context.Replies
+                .Where(x => x.SubjectId == SubjectId)
+                .OrderBy(x => x.ReplyDate).ToList();
         }
 
         public void Save(Reply reply) 
         {
             _context.Replies.Add(reply);
+            _context.SaveChanges();
         }
 
     }

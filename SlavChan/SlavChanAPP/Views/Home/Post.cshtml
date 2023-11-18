@@ -23,27 +23,36 @@
 </nav>
 
 
-
 <div class="container mt-3">
     <h2>Replies</h2>
     <div class="list-group">
         @foreach (var reply in Model)
         {
-            <div class="list-group-item">
+            <div class="list-group-item m-4">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">@reply.Content</h5>
                     <small>@reply.ReplyDate.ToString("yyyy-MM-dd HH:mm:ss")</small>
                 </div>
                 <p class="mb-1">User: @reply.UserId</p>
-                <p class="mb-1">Reply User: @reply.ReplyUserId</p>
+
+                @if (reply.ReplyUserId != null)
+                {
+                    <p class="mb-1">Reply User: @reply.UserId</p>
+                }
+
                 <p class="mb-1">Content:</p>
                 <p class="mb-1">@reply.Content</p>
 
-                <button class="btn btn-primary" id="showFormBtn">
+                @if (reply.ReplyImage != null)
+                {
+                    <img src="~/images/@reply.ReplyImage" alt="picture" class="mx-auto d-block img-fluid" />
+                }
+
+                <button class="btn btn-primary showFormBtn">
                     Odpowiedz
                 </button>
 
-                <form id="form_add" method="post" enctype="multipart/form-data" asp-action="CreateReply" asp-controller="Home">
+                <form class="form_add" method="post" enctype="multipart/form-data" asp-action="CreateReply" asp-controller="Home">
 
                     <div class="form-group">
                         <label for="Content">Content:</label>
@@ -61,26 +70,28 @@
 
                     <button type="submit" class="btn btn-primary">Reply</button>
                 </form>
-
-
             </div>
         }
     </div>
 </div>
 
-
-
-
-
-<!--Skrypt-->
+<!-- Skrypt -->
 @section scripts{
     <script>
-        document.getElementById('showFormBtn').addEventListener('click', function () {
-            // Ustaw widoczność formularza na "block"
-            var form = document.getElementById('form_add');
-            if (form) {
-                form.style.display = 'block';
-            }
+        // Pobierz wszystkie przyciski i formularze
+        var showFormBtns = document.querySelectorAll('.showFormBtn');
+        var forms = document.querySelectorAll('.form_add');
+
+        // Przypisz obsługę zdarzeń dla każdego przycisku
+        showFormBtns.forEach(function (btn, index) {
+            btn.addEventListener('click', function () {
+                // Sprawdź aktualny stan widoczności formularza|
+                var form = forms[index];
+                var isVisible = form.style.display === 'block';
+
+                // Zmiana widoczności formularza na przeciwny
+                form.style.display = isVisible ? 'none' : 'block';
+            });
         });
     </script>
 }
