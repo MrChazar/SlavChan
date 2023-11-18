@@ -7,7 +7,7 @@ namespace SlavChanAPP.Repositories
     {
         IEnumerable<Subject> GetAll(int boardId);
 
-        Subject Get(Guid subjectId);
+        Subject Get(int subjectId);
 
         void Save(Subject subject); 
     }

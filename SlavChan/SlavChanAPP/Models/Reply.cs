@@ -6,7 +6,7 @@ namespace SlavChanAPP.Models
     {
         [Required]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
@@ -18,7 +18,7 @@ namespace SlavChanAPP.Models
         public string Content { get; set; }
 
         [Required]
-        public Guid SubjectId { get; set; }
+        public int SubjectId { get; set; }
 
         [Required]
         public Subject Subject { get; set; }

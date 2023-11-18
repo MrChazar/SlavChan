@@ -31,7 +31,8 @@ namespace SlavChanAPP.Migrations
                 name: "Subjects",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
@@ -56,11 +57,12 @@ namespace SlavChanAPP.Migrations
                 name: "Replies",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ReplyUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
-                    SubjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: false),
                     ReplyDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReplyImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -89,8 +91,8 @@ namespace SlavChanAPP.Migrations
                 columns: new[] { "Id", "BoardId", "Content", "Name", "PostDate", "SubjectImage", "TimeSinceLastPost", "UserId", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"), 2, "Dokąd nocą tupta jeż ??", "Drugi wątek", new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(929), null, 16f, new Guid("9d979d71-e984-4206-8c38-bec205da3765"), "User2" },
-                    { new Guid("d9ffdfa1-041c-48b0-8d11-2e12c9eb8efe"), 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(876), null, 16f, new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"), "User1" }
+                    { 1, 1, "Treść pierwszego wątku", "Pierwszy wątek", new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6479), null, 21f, new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"), "User1" },
+                    { 2, 2, "Dokąd nocą tupta jeż ??", "Drugi wątek", new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6854), null, 21f, new Guid("296cae05-ae95-40f6-90a1-beb3e549f7b0"), "User2" }
                 });
 
             migrationBuilder.InsertData(
@@ -98,8 +100,8 @@ namespace SlavChanAPP.Migrations
                 columns: new[] { "Id", "Content", "ReplyDate", "ReplyImage", "ReplyUserId", "SubjectId", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("941c8ba3-ba57-4085-bdf7-2b2e21a223ec"), "Hmmm naprawdę ciekawy temat", new DateTime(2023, 11, 18, 16, 16, 55, 301, DateTimeKind.Local).AddTicks(983), null, new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"), new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"), new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957") },
-                    { new Guid("9fbaa25c-5b30-4310-b801-7328658f8b1f"), "Rzeczywiście daje wiele do myślenia", new DateTime(2023, 11, 18, 16, 27, 55, 301, DateTimeKind.Local).AddTicks(988), null, new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957"), new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"), new Guid("b3d37353-b295-45ac-b39c-1c5dddc31d3d") }
+                    { 1, "Hmmm naprawdę ciekawy temat", new DateTime(2023, 11, 18, 21, 21, 20, 435, DateTimeKind.Local).AddTicks(7009), null, new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"), 2, new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35") },
+                    { 2, "Rzeczywiście daje wiele do myślenia", new DateTime(2023, 11, 18, 21, 32, 20, 435, DateTimeKind.Local).AddTicks(7026), null, new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35"), 2, new Guid("81f7ac37-837d-4815-b63d-bd6381cdf25d") }
                 });
 
             migrationBuilder.CreateIndex(

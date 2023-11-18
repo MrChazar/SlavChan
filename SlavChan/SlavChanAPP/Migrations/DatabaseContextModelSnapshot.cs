@@ -60,9 +60,11 @@ namespace SlavChanAPP.Migrations
 
             modelBuilder.Entity("SlavChanAPP.Models.Reply", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -78,8 +80,8 @@ namespace SlavChanAPP.Migrations
                     b.Property<Guid?>("ReplyUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SubjectId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -93,29 +95,31 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("941c8ba3-ba57-4085-bdf7-2b2e21a223ec"),
+                            Id = 1,
                             Content = "Hmmm naprawdę ciekawy temat",
-                            ReplyDate = new DateTime(2023, 11, 18, 16, 16, 55, 301, DateTimeKind.Local).AddTicks(983),
-                            ReplyUserId = new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"),
-                            SubjectId = new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"),
-                            UserId = new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957")
+                            ReplyDate = new DateTime(2023, 11, 18, 21, 21, 20, 435, DateTimeKind.Local).AddTicks(7009),
+                            ReplyUserId = new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"),
+                            SubjectId = 2,
+                            UserId = new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35")
                         },
                         new
                         {
-                            Id = new Guid("9fbaa25c-5b30-4310-b801-7328658f8b1f"),
+                            Id = 2,
                             Content = "Rzeczywiście daje wiele do myślenia",
-                            ReplyDate = new DateTime(2023, 11, 18, 16, 27, 55, 301, DateTimeKind.Local).AddTicks(988),
-                            ReplyUserId = new Guid("e19be7c0-55dc-4fb6-8c2f-255eef967957"),
-                            SubjectId = new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"),
-                            UserId = new Guid("b3d37353-b295-45ac-b39c-1c5dddc31d3d")
+                            ReplyDate = new DateTime(2023, 11, 18, 21, 32, 20, 435, DateTimeKind.Local).AddTicks(7026),
+                            ReplyUserId = new Guid("ec472cb6-1847-423c-8b95-bc78a71cee35"),
+                            SubjectId = 2,
+                            UserId = new Guid("81f7ac37-837d-4815-b63d-bd6381cdf25d")
                         });
                 });
 
             modelBuilder.Entity("SlavChanAPP.Models.Subject", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BoardId")
                         .HasColumnType("int");
@@ -154,24 +158,24 @@ namespace SlavChanAPP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d9ffdfa1-041c-48b0-8d11-2e12c9eb8efe"),
+                            Id = 1,
                             BoardId = 1,
                             Content = "Treść pierwszego wątku",
                             Name = "Pierwszy wątek",
-                            PostDate = new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(876),
-                            TimeSinceLastPost = 16f,
-                            UserId = new Guid("ca57178a-0a44-464d-9ebc-ce0b926bd9a0"),
+                            PostDate = new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6479),
+                            TimeSinceLastPost = 21f,
+                            UserId = new Guid("bd7f36a5-ca99-4a6f-b577-f384b13985b4"),
                             UserName = "User1"
                         },
                         new
                         {
-                            Id = new Guid("410761d6-dc1d-4c7d-834e-993d2eb6ec2f"),
+                            Id = 2,
                             BoardId = 2,
                             Content = "Dokąd nocą tupta jeż ??",
                             Name = "Drugi wątek",
-                            PostDate = new DateTime(2023, 11, 18, 16, 4, 55, 301, DateTimeKind.Local).AddTicks(929),
-                            TimeSinceLastPost = 16f,
-                            UserId = new Guid("9d979d71-e984-4206-8c38-bec205da3765"),
+                            PostDate = new DateTime(2023, 11, 18, 21, 9, 20, 435, DateTimeKind.Local).AddTicks(6854),
+                            TimeSinceLastPost = 21f,
+                            UserId = new Guid("296cae05-ae95-40f6-90a1-beb3e549f7b0"),
                             UserName = "User2"
                         });
                 });

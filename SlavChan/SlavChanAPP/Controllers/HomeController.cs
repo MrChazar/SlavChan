@@ -73,13 +73,13 @@ namespace SlavChanAPP.Controllers
             return View("Thread", Threads);
         }
 
-        public IActionResult Post(Guid SubjectId) 
+        public IActionResult Post(int SubjectId) 
         {
             return View(_replyRepository.GetAll(SubjectId));
         }
 
         [HttpPost]
-        public IActionResult CreateReply(string Content, IFormFile Image, Guid ReplyUserId, Guid SubjectId ) 
+        public IActionResult CreateReply(string Content, IFormFile Image, Guid ReplyUserId, int SubjectId ) 
         {
             Reply reply = new Reply();
             reply.Content = Content;
@@ -87,7 +87,6 @@ namespace SlavChanAPP.Controllers
             reply.UserId = Guid.Parse(HttpContext.Session.GetString("UserId"));
             reply.ReplyUserId = ReplyUserId;
             reply.SubjectId = SubjectId;
-            reply.Id = Guid.NewGuid();
             _replyRepository.Save(reply);
             return RedirectToAction("Post", new { SubjectId = SubjectId });
         }

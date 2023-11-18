@@ -13,7 +13,7 @@ namespace SlavChanAPP.Repositories
             _context = context;
         }
 
-        public IEnumerable<Reply> GetAll(Guid SubjectId)
+        public IEnumerable<Reply> GetAll(int SubjectId)
         {
             return _context.Replies
                 .Where(x => x.SubjectId == SubjectId)

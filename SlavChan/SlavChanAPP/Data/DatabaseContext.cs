@@ -12,8 +12,8 @@ namespace SlavChanAPP.DataBaseContext
 
         }
 
-        public Guid ThredId1 = Guid.NewGuid();
-        public Guid ThredId2 = Guid.NewGuid();
+        public int ThredId1 = 1;
+        public int ThredId2 = 2;
         public Guid ThredPostingUser1 = Guid.NewGuid();
         public Guid ThredPostingUser2 = Guid.NewGuid();
         public Guid ReplyPostingUser1 = Guid.NewGuid();
@@ -85,7 +85,7 @@ namespace SlavChanAPP.DataBaseContext
             modelBuilder.Entity<Reply>().HasData(
                 new Reply
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     UserId = ReplyPostingUser1, // Identyfikator użytkownika
                     ReplyUserId = ThredPostingUser1, // Identyfikator użytkownika
                     Content = "Hmmm naprawdę ciekawy temat",
@@ -94,7 +94,7 @@ namespace SlavChanAPP.DataBaseContext
                 },
                 new Reply 
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 2,
                     UserId = ReplyPostingUser2,
                     ReplyUserId = ReplyPostingUser1,
                     Content = "Rzeczywiście daje wiele do myślenia",

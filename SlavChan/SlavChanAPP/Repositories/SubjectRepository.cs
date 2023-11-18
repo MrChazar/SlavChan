@@ -13,7 +13,7 @@ namespace SlavChanAPP.Repositories
             _context = dbContext;
         }
 
-        public Subject Get(Guid subjectId)
+        public Subject Get(int subjectId)
         {
             return _context.Subjects.FirstOrDefault(x => x.Id == subjectId);
         }
@@ -29,7 +29,7 @@ namespace SlavChanAPP.Repositories
             Reply reply = new Reply();
             reply.SubjectId = subject.Id;
             reply.Content = subject.Content;
-            reply.Id = Guid.NewGuid();
+            
             reply.UserId = subject.UserId;
             reply.ReplyImage = subject.SubjectImage;
             reply.ReplyDate = subject.PostDate;
