@@ -10,5 +10,9 @@ namespace SlavChanAPP.Repositories
         Subject Get(int subjectId);
 
         void Save(Subject subject); 
+
+        void Delete();
+
+        void UpdateTime();
     }
 }

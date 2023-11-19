@@ -39,6 +39,29 @@ namespace SlavChanAPP.Repositories
             _context.SaveChanges();
         }
         
+        public void Delete() 
+        {
+            IEnumerable<Subject> subjects = _context.Subjects.Where(x => x.TimeSinceLastPost > 86400000);
+            foreach( var a in subjects) 
+            {
+                _context.Subjects.Remove(a);
+            }
+            _context.SaveChanges();
+        }
+
+        public void UpdateTime() 
+        {
+            IQueryable<Subject> subjects = _context.Subjects;
+
+            foreach (var subject in subjects)
+            {
+                var timeSinceLastPost = (float)(DateTime.Now - subject.PostDate).TotalMilliseconds;
+                subject.TimeSinceLastPost = timeSinceLastPost;
+            }
+
+            _context.SaveChanges();
+        }
+
         
     }
 }

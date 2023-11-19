@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using SlavChanAPP.BackgroundServices;
 using SlavChanAPP.DataBaseContext;
 using SlavChanAPP.Repositories;
 using Thread = SlavChanAPP.Models.Subject;
@@ -14,7 +17,13 @@ builder.Services.AddScoped<IBoardRepository, BoardRepository>();
 builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 builder.Services.AddScoped<IPictureRepository, PictureRepository>();
 builder.Services.AddScoped<IReplyRepository, ReplyRepository>();
-builder.Services.AddSession();
+
+builder.Services.AddTransient<ISubjectRepository, SubjectRepository>();
+builder.Services.AddTransient<IReplyRepository, ReplyRepository>();
+
+builder.Services.AddHostedService<DataBackground>();
+
+
 
 // Setting up file size limits for our form
 builder.Services.Configure<FormOptions>(options =>
@@ -26,6 +35,8 @@ builder.Services.Configure<FormOptions>(options =>
 
 // Add Database
 builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SlavChanDBContext")));
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
