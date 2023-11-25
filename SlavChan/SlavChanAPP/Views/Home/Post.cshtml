@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Reply>
 
 @{
-    ViewData["Title"] = $"Post";
+    ViewData["Title"] = $"Post: {ViewBag.PostName}";
 }
 
 
@@ -42,7 +42,6 @@
                     <small class="mb-1">Reply User: @reply.UserId</small>
                 }
 
-                <p class="mb-1">Content:</p>
                 <p class="mb-1">@reply.Content</p>
 
                 @if (reply.ReplyImage != null)
@@ -80,18 +79,18 @@
 <!-- Skrypt -->
 @section scripts{
     <script>
-        // Pobierz wszystkie przyciski i formularze
+        // Get button and forms
         var showFormBtns = document.querySelectorAll('.showFormBtn');
         var forms = document.querySelectorAll('.form_add');
 
-        // Przypisz obsługę zdarzeń dla każdego przycisku
+        // event validation
         showFormBtns.forEach(function (btn, index) {
             btn.addEventListener('click', function () {
-                // Sprawdź aktualny stan widoczności formularza|
+                // actual state of form
                 var form = forms[index];
                 var isVisible = form.style.display === 'block';
 
-                // Zmiana widoczności formularza na przeciwny
+                // visibility change
                 form.style.display = isVisible ? 'none' : 'block';
             });
         });

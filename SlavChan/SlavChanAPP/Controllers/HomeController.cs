@@ -40,21 +40,26 @@ namespace SlavChanAPP.Controllers
 
         public IActionResult Thread(int boardId) 
         {
-            return View(_subjectRepository.GetAll(boardId));
+            // for getting boardid when subject is null (find better fix)
+            var all = _subjectRepository.GetAll(boardId);
+            ViewBag.Board = _boardRepository.GetById(boardId);
+            if(all == null) 
+            {
+                return View();
+            }
+			return View(all);
         }
 
-        public IActionResult ShowThread() 
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult CreateThread(Subject thread, IFormFile Image)
         {
+            ViewBag.Board = _boardRepository.GetById(thread.BoardId);
             thread.PostDate = DateTime.Now;
             thread.Replies = new List<Reply>();
             thread.TimeSinceLastPost = 0;
             thread.UserId = Guid.Parse(HttpContext.Session.GetString("UserId"));
+
             if( Image != null ) 
             {
                 string temp = Guid.NewGuid().ToString();
@@ -66,7 +71,6 @@ namespace SlavChanAPP.Controllers
                 thread.SubjectImage = null;
             }
             
-
             _subjectRepository.Save(thread);
 
             IEnumerable<Subject> Threads = _subjectRepository.GetAll(thread.BoardId);
@@ -75,12 +79,14 @@ namespace SlavChanAPP.Controllers
 
         public IActionResult Post(int SubjectId) 
         {
+            ViewBag.PostName = _subjectRepository.Get(SubjectId).Name;
             return View(_replyRepository.GetAll(SubjectId));
         }
 
         [HttpPost]
         public IActionResult CreateReply(string Content, IFormFile Image, Guid ReplyUserId, int SubjectId ) 
         {
+            _subjectRepository.UpdateTimeById(SubjectId);
             Reply reply = new Reply();
             reply.Content = Content;
             reply.ReplyDate = DateTime.Now;

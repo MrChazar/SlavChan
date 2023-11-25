@@ -13,6 +13,8 @@ namespace SlavChanAPP.Repositories
 
         void Delete();
 
-        void UpdateTime();
+        void UpdateAllTime();
+
+        void UpdateTimeById(int subjectId);
     }
 }

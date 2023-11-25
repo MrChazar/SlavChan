@@ -6,22 +6,22 @@ namespace SlavChanAPP.Repositories
 {
     public class BoardRepository : IBoardRepository
     {
-        private readonly DatabaseContext _databasecontext;
+        private readonly DatabaseContext _context;
 
         public BoardRepository(DatabaseContext databasecontext)
         {
-            _databasecontext = databasecontext;
+            _context = databasecontext;
         }
 
         public IEnumerable<Board> GetAll()
         {
-            IEnumerable<Board> boards = _databasecontext.Boards;
+            IEnumerable<Board> boards = _context.Boards;
             return boards.ToList();
         }
 
         public Board GetById(int id)
         {
-            Board boards = _databasecontext.Boards.FirstOrDefault(v => v.Id == id);
+            Board boards = _context.Boards.FirstOrDefault(v => v.Id == id);
             return boards;
         }
     }

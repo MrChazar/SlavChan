@@ -75,19 +75,19 @@ namespace SlavChanAPP.DataBaseContext
                     Content = "Dokąd nocą tupta jeż ??",
                     PostDate = DateTime.Now,
                     TimeSinceLastPost = DateTime.Now.Hour,
-                    UserId = ThredPostingUser2, // Identyfikator użytkownika
+                    UserId = ThredPostingUser2, // user identifier
                     BoardId = 2
                 }
-                // Dodaj więcej rekordów Thread według potrzeb
+                // add more thread records
             );
 
-            // Seedowanie danych dla modelu Reply
+            // seeding data 
             modelBuilder.Entity<Reply>().HasData(
                 new Reply
                 {
                     Id = 1,
-                    UserId = ReplyPostingUser1, // Identyfikator użytkownika
-                    ReplyUserId = ThredPostingUser1, // Identyfikator użytkownika
+                    UserId = ReplyPostingUser1, 
+                    ReplyUserId = ThredPostingUser1, 
                     Content = "Hmmm naprawdę ciekawy temat",
                     ReplyDate = DateTime.Now.AddMinutes(12),
                     SubjectId = ThredId2 
@@ -111,7 +111,7 @@ namespace SlavChanAPP.DataBaseContext
                     ReplyDate = DateTime.Now.AddMinutes(2137),
                     SubjectId = ThredId1
                 }
-                // Dodaj więcej rekordów Reply według potrzeb
+                
             );
         }
     }

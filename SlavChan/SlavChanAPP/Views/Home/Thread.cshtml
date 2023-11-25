@@ -1,9 +1,13 @@
 ﻿@model IEnumerable<Subject>
 @using SlavChanAPP.Models;
-@{
 
-    var  firstBoard = Model.First();
-    ViewData["Title"] = $"/ {firstBoard.Board.Shortcut} {firstBoard.Board.Name} /";
+
+
+@if (Model != null) {
+
+    var boardId = ViewBag.Board.Id;
+    
+    ViewData["Title"] = $"/ {ViewBag.Board.Shortcut} {ViewBag.Board.Name} /";
 }
 
 
@@ -28,17 +32,17 @@
 </nav>
 
 
-<!--Stwórz nowy wątek-->
+<!--Create new thread-->
 <div class="text-center mb-4">
     @{
-        <h2> @firstBoard.Board.Name </h2>
+        <h2>@ViewBag.Board.Name </h2>
     }
     <button class="btn btn-primary" id="showFormBtn">
         Stwórz nowy wątek
     </button>
 </div>
 
-<!--Formularz do tworzenia nowych threadów-->
+<!--form for creating new thread-->
 <form id="form_add" method="post" enctype="multipart/form-data" asp-action="CreateThread" asp-controller="Home">
     @Html.AntiForgeryToken()
 
@@ -62,40 +66,40 @@
         <input type="file" name="Image" class="form-control" />
     </div>
 
-    <input type="hidden" name="BoardId" value="@firstBoard.Board.Id">
+    <input type="hidden" name="BoardId" value="@ViewBag.Board.Id">
 
     <button type="submit" class="btn btn-primary">Create Thread</button>
 </form>
 
 
-<!--Wszystkie Thready-->
-<div id="all" class="text-center d-flex flex-wrap justify-content-around">
-    @foreach (var a in Model)
-    {
-        <div class="card m-3" style="width: 18rem;">
+<!--all threads-->
+@if (Model != null)
+{
+    <div id="all" class="text-center d-flex flex-wrap justify-content-around">
+        @foreach (var a in Model)
+        {
+            <div class="card m-3" style="width: 18rem;">
 
-            @if (a.SubjectImage != null)
-            {
-                <img src="~/images/@a.SubjectImage" alt="picture" class="mx-auto d-block img-fluid" />
-            }
+                @if (a.SubjectImage != null)
+                {
+                    <img src="~/images/@a.SubjectImage" alt="picture" class="mx-auto d-block img-fluid" />
+                }
 
-            <div class="card-body">
-                <h5 class="card-title"> @Html.ActionLink(@a.Name, "Post", "Home", new {SubjectId = a.Id}) </h5>
+                <div class="card-body">
+                    <h5 class="card-title"> @Html.ActionLink(@a.Name, "Post", "Home", new {SubjectId = a.Id}) </h5>
+                </div>
+
             </div>
-
-        </div>
-    }
-</div>
-
+        }
+    </div>
+}
 
 
-
-
-<!--Skrypt-->
+<!--Script -->
 @section scripts{
     <script>
         document.getElementById('showFormBtn').addEventListener('click', function () {
-            // Ustaw widoczność formularza na "block"
+            // set visibility
             var form = document.getElementById('form_add');
             if (form) {
                 form.style.display = 'block';
