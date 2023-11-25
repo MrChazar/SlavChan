@@ -4,20 +4,22 @@ namespace SlavChanAPP.BackgroundServices
 {
     public class DataBackground : BackgroundService
     {
-        private readonly ISubjectRepository _subjectRepository;
-        public DataBackground(ISubjectRepository subjectRepository)
+        private readonly IServiceProvider _serviceProvider;
+        public DataBackground(IServiceProvider serviceProvider)
         {
-            _subjectRepository = subjectRepository;
+            _serviceProvider = serviceProvider;
         }
+
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            using var scope = _serviceProvider.CreateScope();
+            var subjectRepository = scope.ServiceProvider.GetRequiredService<ISubjectRepository>();
             while (!stoppingToken.IsCancellationRequested)
             {
-                _subjectRepository.UpdateTime();
-                _subjectRepository.Delete();
-                Console.WriteLine("Dupa");
-                await Task.Delay(10, stoppingToken);
+                subjectRepository.UpdateTime();
+                subjectRepository.Delete();
+                await Task.Delay(60000, stoppingToken);
             }
         }
     }

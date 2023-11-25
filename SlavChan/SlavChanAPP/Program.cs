@@ -18,9 +18,6 @@ builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 builder.Services.AddScoped<IPictureRepository, PictureRepository>();
 builder.Services.AddScoped<IReplyRepository, ReplyRepository>();
 
-builder.Services.AddTransient<ISubjectRepository, SubjectRepository>();
-builder.Services.AddTransient<IReplyRepository, ReplyRepository>();
-
 builder.Services.AddHostedService<DataBackground>();
 
 
