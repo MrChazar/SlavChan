@@ -102,7 +102,7 @@
             // set visibility
             var form = document.getElementById('form_add');
             if (form) {
-                form.style.display = 'block';
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
             }
         });
     </script>

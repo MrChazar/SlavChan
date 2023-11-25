@@ -27,19 +27,30 @@
 
 <!--Showing every post's-->
 <div class="container mt-3">
-    <h2>Replies</h2>
     <div class="list-group">
         @foreach (var reply in Model)
         {
-            <div class="list-group-item m-4">
+            <div class="list-group-item m-4 border">
                 <div class="d-flex w-100 justify-content-between">
                     <small class="mb-1">User: @reply.UserId</small>
                     <small>@reply.ReplyDate.ToString("yyyy-MM-dd HH:mm:ss")</small>
                 </div>
 
+                <div class="d-flex w-100 justify-content-between">
+                    @if (reply.Name != null)
+                    {
+                        <small class="mb-1">Title: @reply.Name</small>
+                    }
+
+                    @if (reply.UserName != null)
+                    {
+                        <small class="mb-1">UserName: @reply.UserName</small>
+                    }
+                </div>
+                
                 @if (reply.ReplyUserId != null)
                 {
-                    <small class="mb-1">Reply User: @reply.UserId</small>
+                    <small class="mb-1">Reply User: @reply.ReplyUserId</small>
                 }
 
                 <p class="mb-1">@reply.Content</p>
@@ -53,7 +64,7 @@
                     Odpowiedz
                 </button>
 
-                <form class="form_add" method="post" enctype="multipart/form-data" asp-action="CreateReply" asp-controller="Home">
+                <form class="form_add mt-3" method="post" enctype="multipart/form-data" asp-action="CreateReply" asp-controller="Home">
 
                     <div class="form-group">
                         <label for="Content">Content:</label>
@@ -76,7 +87,7 @@
     </div>
 </div>
 
-<!-- Skrypt -->
+<!-- Script -->
 @section scripts{
     <script>
         // Get button and forms

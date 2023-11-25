@@ -52,7 +52,7 @@ namespace SlavChanAPP.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateThread(Subject thread, IFormFile Image)
+        public IActionResult CreateThread(Subject thread, IFormFile Image, string? name, string? userName)
         {
             ViewBag.Board = _boardRepository.GetById(thread.BoardId);
             thread.PostDate = DateTime.Now;
@@ -71,7 +71,7 @@ namespace SlavChanAPP.Controllers
                 thread.SubjectImage = null;
             }
             
-            _subjectRepository.Save(thread);
+            _subjectRepository.Save(thread, name, userName);
 
             IEnumerable<Subject> Threads = _subjectRepository.GetAll(thread.BoardId);
             return View("Thread", Threads);
@@ -79,6 +79,7 @@ namespace SlavChanAPP.Controllers
 
         public IActionResult Post(int SubjectId) 
         {
+            ViewBag.UserName = _subjectRepository.Get(SubjectId).UserName;
             ViewBag.PostName = _subjectRepository.Get(SubjectId).Name;
             return View(_replyRepository.GetAll(SubjectId));
         }

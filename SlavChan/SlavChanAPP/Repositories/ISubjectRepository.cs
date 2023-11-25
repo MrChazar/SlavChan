@@ -9,7 +9,7 @@ namespace SlavChanAPP.Repositories
 
         Subject Get(int subjectId);
 
-        void Save(Subject subject); 
+        void Save(Subject subject, string? Name, string? UserName); 
 
         void Delete();
 

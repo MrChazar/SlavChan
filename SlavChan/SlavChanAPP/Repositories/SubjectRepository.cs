@@ -24,9 +24,11 @@ namespace SlavChanAPP.Repositories
            return _context.Subjects.Include(o => o.Board).Include(o => o.Replies).Where(x => x.BoardId == boardId).ToList();
         }
 
-        public void Save(Subject subject) 
+        public void Save(Subject subject, string? name, string? userName) 
         {
             Reply reply = new Reply();
+            reply.Name = name;
+            reply.UserName = userName;
             reply.SubjectId = subject.Id;
             reply.Content = subject.Content;
             reply.UserId = subject.UserId;
