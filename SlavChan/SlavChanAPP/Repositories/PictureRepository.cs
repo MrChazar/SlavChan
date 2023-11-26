@@ -17,8 +17,10 @@ namespace SlavChanAPP.Repositories
         {
             try
             {
-                if (Image != null && Image.Length > 0)
+                if (Image != null && Image.Length > 0 && ((Path.GetExtension(Image.FileName) == ".png") 
+                    || (Path.GetExtension(Image.FileName) == ".jpg") || (Path.GetExtension(Image.FileName) == ".gif")))
                 {
+                    Console.WriteLine($"udało się {Path.GetExtension(Image.FileName)}");
                     string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
                     string uniqueFileName = SubjectImage + Path.GetExtension(Image.FileName);
                     SubjectImage += Path.GetExtension(Image.FileName);
@@ -29,6 +31,10 @@ namespace SlavChanAPP.Repositories
                     {
                         Image.CopyTo(stream);
                     }
+                }
+                else 
+                {
+                    SubjectImage = null;
                 }
             }
             catch (Exception ex)
