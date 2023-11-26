@@ -2,6 +2,7 @@
 using SlavChanAPP.Models;
 using SlavChanAPP.Repositories;
 using System.Diagnostics;
+using System.Threading;
 
 namespace SlavChanAPP.Controllers
 {
@@ -23,7 +24,7 @@ namespace SlavChanAPP.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.SetString("UserId", Guid.NewGuid().ToString());
+      
             return View(_boardRepository.GetAll());
         }
 
@@ -92,6 +93,18 @@ namespace SlavChanAPP.Controllers
             reply.Content = Content;
             reply.ReplyDate = DateTime.Now;
             reply.UserId = Guid.Parse(HttpContext.Session.GetString("UserId"));
+
+            if (Image != null)
+            {
+                string temp = Guid.NewGuid().ToString();
+                _pictureRepository.Save(Image, SubjectImage: ref temp);
+                reply.ReplyImage = temp;
+            }
+            else
+            {
+                reply.ReplyImage = null;
+            }
+
             reply.ReplyUserId = ReplyUserId;
             reply.SubjectId = SubjectId;
             _replyRepository.Save(reply);

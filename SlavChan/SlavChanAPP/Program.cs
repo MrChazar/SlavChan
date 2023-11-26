@@ -53,6 +53,13 @@ app.UseSession();
 
 app.UseAuthorization();
 
+
+app.Use(async (context, next) =>
+{
+    context.Session.SetString("UserId", Guid.NewGuid().ToString());
+    await next();
+});
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

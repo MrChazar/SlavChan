@@ -57,7 +57,7 @@
 
                 @if (reply.ReplyImage != null)
                 {
-                    <img src="~/images/@reply.ReplyImage" alt="picture" class="mx-auto d-block img-fluid" />
+                    <img src="~/images/@reply.ReplyImage" alt="picture" class="mx-auto d-block" class=".custom-thumbnail" alt="Thumbnail image" />
                 }
 
                 <button class="btn btn-primary showFormBtn">
@@ -73,7 +73,7 @@
 
                     <div class="form-group">
                         <label for="Image">Image:</label>
-                        <input type="file" name="Image" class="form-control" accept=".jpg, .jpeg, .png .gif" />
+                        <input type="file" name="Image" class="form-control" accept=".jpg, .jpeg, .png, .gif" />
                     </div>
 
                     <input name="ReplyUserId" type="hidden" value="@reply.UserId">

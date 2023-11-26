@@ -4,5 +4,4 @@ To add:
 
 
 Known bugs:
-- when you copy link to another site and try to create new post session id is null because is set in index
 - remade how to images are shown
